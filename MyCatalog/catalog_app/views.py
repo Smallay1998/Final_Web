@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Product, Traveler
 from .forms import RegisterForm, LoginForm
 
+from django.http import JsonResponse
 from django.http import HttpResponseRedirect, HttpResponse
 import json
 import bcrypt
@@ -10,6 +11,8 @@ def my_salt():
     return ('$2b$12$tUimG74HOCBiAA7sm3QX9e').encode('utf-8')
 
 # Create your views here.
+
+
 def homepage(request):
     context = {
         'var1': 'This is to handle input',
@@ -42,6 +45,9 @@ def product_detail(request):
 
     qs_json = json.dumps(list[0])
     return HttpResponse(qs_json, content_type='application/json')
+
+
+
 
 def register(request):
     form = RegisterForm(request.POST)
